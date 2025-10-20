@@ -4,7 +4,7 @@ extends Area2D
 var screen_size
 
 signal hit
-#signal pickup
+signal pickup
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,10 +46,14 @@ func _process(delta: float) -> void:
 		
 
 
-func _on_body_entered(_body) -> void:
+func _on_body_entered(body) -> void:
 	hide()
 	hit.emit()
 	$CollisionShape2D.set_deferred("disabled", true)
+	
+	
+		
+	
 		
 	
 	
@@ -58,3 +62,11 @@ func start(pos):
 	show()
 	$CollisionShape2D.disabled = false
 	
+
+
+func _on_pickup_finder_body_entered(body: Node2D) -> void:
+	pickup.emit()
+	
+	body.queue_free()
+	
+	 # Replace with function body.

@@ -43,8 +43,9 @@ func update_score(score):
 	$ScoreLabel.text = str(score)
 	
 func update_pickups(total_pickups):
-	$PickupCounter.text = str(total_pickups)
-
+	#$PickupCounter.text = str(total_pickups)
+	$ProgressBar.value = total_pickups
+	
 func _on_start_button_pressed() -> void:
 	$StartButton.hide()
 	start_game.emit()

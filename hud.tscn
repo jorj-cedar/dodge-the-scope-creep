@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5jcni6ttls2w"]
+[gd_scene load_steps=7 format=3 uid="uid://c5jcni6ttls2w"]
 
 [ext_resource type="FontFile" uid="uid://cfw10xmyoyr4d" path="res://fonts/Xolonium-Regular.ttf" id="1_37p78"]
 [ext_resource type="Script" uid="uid://vqd3ytbwbgdn" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="Texture2D" uid="uid://ccdcv0ic01hhr" path="res://icon.svg" id="3_8sq4i"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_64ctp"]
 action = &"start_game"
 
 [sub_resource type="Shortcut" id="Shortcut_8sq4i"]
 events = [SubResource("InputEventAction_64ctp")]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_640wx"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_64ctp")
@@ -48,7 +51,6 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="PickupCounter" type="Label" parent="."]
-visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "0"
@@ -73,6 +75,17 @@ text = "Start"
 [node name="MessageTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 136.0
+offset_top = 68.0
+offset_right = 349.0
+offset_bottom = 138.0
+nine_patch_stretch = true
+texture_under = SubResource("CanvasTexture_640wx")
+texture_progress = ExtResource("3_8sq4i")
+tint_under = Color(0.5529412, 0.6156863, 0.654902, 1)
+tint_progress = Color(0, 1, 0, 1)
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

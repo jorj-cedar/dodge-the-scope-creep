@@ -1,14 +1,13 @@
 extends Node
 
 @export var mob_scene: PackedScene
-#@export var pickup_scene: PackedScene
+@export var pickup_scene: PackedScene
 
 var score
-#var total_pickups: int = 0
+var total_pickups: int = 0
 
-#func pickup_collected():
-#	total_pickups += 1
-#	$HUD.update_pickups(total_pickups)
+
+
 	
 
 # Called when the node enters the scene tree for the first time.
@@ -40,7 +39,7 @@ func new_game():
 	score = 30
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
-#	$PickupTimer.start()
+	$PickupTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Reach your deadline!")
 	
@@ -79,24 +78,29 @@ func _on_score_timer_timeout() -> void:
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
 	$ScoreTimer.start()
-#	$PickupTimer.start()
+	$PickupTimer.start()
 	
 
 
-#func _on_pickup_timer_timeout() -> void:
-	#var pickup = pickup_scene.instantiate()
-	#
-	#var pickup_spawn_location = $MobPath/MobSpawnLocation
-	#pickup_spawn_location.progress_ratio = randf()
-	#pickup.position = pickup_spawn_location.position
-	#
-	#var direction = pickup_spawn_location.rotation + PI / 2
-	#
-	#direction += randf_range(-PI / 4, PI / 4)
-	#pickup.rotation = direction
-	#
-	#var velocity = Vector2(randf_range(150.0, 250.0,), 0.0)
-	#
-	#pickup.linear_velocity = velocity.rotated(direction)
-	#
-	#add_child(pickup)
+func _on_pickup_timer_timeout() -> void:
+	var pickup = pickup_scene.instantiate()
+	
+	var pickup_spawn_location = $MobPath/MobSpawnLocation
+	pickup_spawn_location.progress_ratio = randf()
+	pickup.position = pickup_spawn_location.position
+	
+	var direction = pickup_spawn_location.rotation + PI / 2
+	
+	direction += randf_range(-PI / 4, PI / 4)
+	pickup.rotation = direction
+	
+	var velocity = Vector2(randf_range(150.0, 250.0,), 0.0)
+	
+	pickup.linear_velocity = velocity.rotated(direction)
+	
+	add_child(pickup)
+
+
+func _on_player_pickup() -> void:
+	total_pickups += 1
+	$HUD.update_pickups(total_pickups) # Replace with function body.
