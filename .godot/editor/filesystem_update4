@@ -8,3 +8,8 @@ res://main.tscn
 res://player.gd
 res://hud.tscn
 res://hud.gd
+res://scope_increased_msg.tscn
+res://scope_increased_msg.gd
+res://game_msg.tscn
+res://game_msg.gd
+res://progress_bar.gd

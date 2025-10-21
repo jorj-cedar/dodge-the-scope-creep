@@ -4,6 +4,7 @@ extends Area2D
 var screen_size
 
 signal hit
+signal embiggen
 signal pickup
 
 # Called when the node enters the scene tree for the first time.
@@ -47,15 +48,13 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body) -> void:
-	hide()
-	hit.emit()
-	$CollisionShape2D.set_deferred("disabled", true)
+	#hide()
+	#hit.emit()
 	
-	
-		
-	
-		
-	
+	embiggen.emit()
+	body.queue_free()
+	#$CollisionShape2D.set_deferred("disabled", true)
+
 	
 func start(pos):
 	position = pos

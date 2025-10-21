@@ -19,6 +19,13 @@ func show_message(text):
 	$Message.show()
 	$MessageTimer.start()
 
+func flash():
+	var fade_duration = 1.0
+	var tween = get_tree().create_tween()
+	
+	tween.tween_property($ProgressBar, "modulate", Color.RED, fade_duration)
+	tween.tween_property($ProgressBar, "modulate", Color.BLACK, fade_duration)
+
 func show_game_over():
 	show_message("Your game got too big!")
 	await $MessageTimer.timeout
@@ -45,7 +52,11 @@ func update_score(score):
 func update_pickups(total_pickups):
 	#$PickupCounter.text = str(total_pickups)
 	$ProgressBar.value = total_pickups
-	
+
+func update_size(max_scope):
+	$ProgressBar.size.x = max_scope * 20
+	$ProgressBar.max_value = max_scope
+
 func _on_start_button_pressed() -> void:
 	$StartButton.hide()
 	start_game.emit()
