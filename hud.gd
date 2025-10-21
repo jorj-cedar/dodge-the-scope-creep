@@ -23,8 +23,8 @@ func flash():
 	var fade_duration = 1.0
 	var tween = get_tree().create_tween()
 	
-	tween.tween_property($ProgressBar, "modulate", Color.RED, fade_duration)
-	tween.tween_property($ProgressBar, "modulate", Color.BLACK, fade_duration)
+	tween.tween_property($ProgressBar, "tint_under", Color.RED, fade_duration)
+	tween.tween_property($ProgressBar, "tint_under", Color.BLACK, fade_duration)
 
 func show_game_over():
 	show_message("Your game got too big!")

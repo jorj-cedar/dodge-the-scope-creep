@@ -139,7 +139,7 @@ func _on_player_embiggen() -> void:
 	max_scope += 1
 	$HUD.update_size(max_scope)
 	show_msg($Player.position,"SCOPE INCREASED!",red)
-	if max_scope == death_scope - 2:
+	if max_scope >= death_scope - 2:
 		$HUD/ProgressBar/AlmostDead.visible = true
 		$HUD.flash()
 		
